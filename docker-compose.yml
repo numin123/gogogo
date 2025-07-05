@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: gogogo_user
+      POSTGRES_PASSWORD: gogogo_pass
+      POSTGRES_DB: gogogo_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  migrate:
+    image: migrate/migrate
+    depends_on:
+      - db
+    volumes:
+      - ./migrations:/migrations
+    command: ["-path=/migrations", "-database=postgres://gogogo_user:gogogo_pass@db:5432/gogogo_db?sslmode=disable", "up"]
+    restart: "on-failure"
+  rollback:
+    image: migrate/migrate
+    depends_on:
+      - db
+    volumes:
+      - ./migrations:/migrations
+    command: ["-path=/migrations", "-database=postgres://gogogo_user:gogogo_pass@db:5432/gogogo_db?sslmode=disable", "down", "1"]
+  seed:
+    image: postgres:15
+    depends_on:
+      - db
+    volumes:
+      - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql
+    entrypoint: ["psql", "-h", "db", "-U", "gogogo_user", "-d", "gogogo_db", "-f", "/docker-entrypoint-initdb.d/seed.sql"]
+    environment:
+      PGPASSWORD: gogogo_pass
+volumes:
+  db_data:
