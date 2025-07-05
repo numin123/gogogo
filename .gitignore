@@ -1,0 +1,17 @@
+.env
+*.log
+*.sqlite3
+db_data/
+vendor/
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+*.tmp
+*.out
+*.exe
+*.test
+coverage/
+node_modules/
