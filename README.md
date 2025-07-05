@@ -19,6 +19,15 @@ DATABASE_URL=postgres://gogogo_user:gogogo_pass@localhost:5432/gogogo_db?sslmode
 SERVER_PORT=8080
 ```
 
+## Dependencies
+This project uses Go modules to manage dependencies. Main modules used:
+
+- `github.com/gin-gonic/gin`: Web API framework
+- `gorm.io/gorm`: ORM for Go
+- `gorm.io/driver/postgres`: PostgreSQL support for GORM
+- `github.com/golang-jwt/jwt/v5`: JWT authentication
+- `github.com/joho/godotenv`: Load .env files
+
 ## How to Start
 Run the application:
 ```
