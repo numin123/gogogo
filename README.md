@@ -9,9 +9,15 @@ Simple Golang project with API and database support.
 3. Install dependencies:
    go mod download
 
-## Tools
-- Go (https://go.dev/)
-- Docker (for database, optional)
+
+## Dependencies
+This project uses Go modules to manage dependencies. Main modules used:
+
+- `github.com/gin-gonic/gin`: Web API framework
+- `gorm.io/gorm`: ORM for Go
+- `gorm.io/driver/postgres`: PostgreSQL support for GORM
+- `github.com/golang-jwt/jwt/v5`: JWT authentication
+- `github.com/joho/godotenv`: Load .env files
 
 ## How to Start
 Run the application:
