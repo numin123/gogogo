@@ -1,5 +1,12 @@
-version: '3.8'
 services:
+  gotest:
+    image: golang:1.23
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - CGO_ENABLED=1
+    command: sh -c "apt-get update && apt-get install -y gcc nano vim && go mod tidy && go test -v ./internal/api"
   db:
     image: postgres:15
     environment:
