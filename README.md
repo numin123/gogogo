@@ -10,7 +10,6 @@ Simple Golang project with API and database support.
    go mod download
 
 
-
 ## Example .env
 Create a `.env` file in the project root with:
 ```
@@ -33,6 +32,30 @@ Run the application:
 ```
 go run ./cmd/main.go
 ```
+
+## Running Tests with Docker Compose
+
+To run all Go tests:
+
+```sh
+docker-compose up --build gotest
+```
+
+To run tests interactively:
+
+```sh
+docker-compose run --rm gotest sh
+```
+
+Once inside the shell, you can:
+
+- Run a specific test function:
+
+  ```sh
+  go test -v ./internal/api -run TestGinLoginHandlerGorm
+  ```
+
+Type `exit` to leave the shell when done.
 
 ## Using Docker
 This project includes a `docker-compose.yml` for running a local PostgreSQL database and managing migrations.
